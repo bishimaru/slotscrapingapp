@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{% url 'app:index' %}">TOP</a>
+            </li>
+        </ol>
+        <div class="card mb-3">
+            <div class="card-header">
+                <h3><b>パチスロデータアプリ</b></h3>
+            </div>
+            <div class="card-body">
+                <!-- テーブル表 -->
+                <div class="table-responsive">
+                    <table width="100%" class="table table-striped table-bordered table-hover">
+                        <!-- 表の列の定義-->
+                        <thead>
+                            <tr>
+                                <th class="text-center">店舗一覧</th>
+                                <th class="text-center">メモ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for store in stores %}
+                            <tr class="odd gradeX text-center">
+                                <td class="text-center"><a href="{% url 'app:date' %}?sn={{ store.pk }}">
+                                        {{ store.name }}
+                                    </a></td>
+                                <td class="text-center" width=100>
+                                    {% if store.memo == None %}
+
+                                    {% else %}
+                                    <a href="{% url 'app:index' %}?sn={{ item.store_name }}">
+                                        {{ store.memo }}
+                                    </a>
+                                    {% endif %}
+                                </td>
+                                <!-- <td class="text-center" width="100">{{ item.name }}</td>
+                                <td class="text-center" width="140">{{ item.number }}</td>
+                                <td class="text-center" width="140">{{ item.date }}</td> -->
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                        　
+                        <!-- ここまでが表のデータ部分の表示-->
+                    </table>
+                    <!-- ここまでがテーブル表の定義 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

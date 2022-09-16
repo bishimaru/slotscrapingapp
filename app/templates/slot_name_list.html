@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content-wrappery">
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+            </li>
+            <li class="breadcrumb-item active"><a href="{% url 'app:index' %}">TOP</a></li>
+            <li class="breadcrumb-item active">
+                {% for item in object_list|slice:"0:1"%}
+                <a href="{% url 'app:index' %}">{{ item.store_name }}</a>
+                {% endfor %}
+            </li>
+            <li class="breadcrumb-item active">
+                {% for item in object_list|slice:"0:1"%}
+                {{ item.date }}
+                {% endfor %}
+            </li>
+            <li>機種名
+            </li>
+        </ol>
+        <header>
+            <h3><b>パチスロデータアプリ</b></h3>
+        </header>
+        <div class=" row m-1">
+            <div class="col-8 p-0">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-center">機種名</th>
+                            <th class="text-center">台</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for name, cnt in name_cnt %}
+                        <tr class="odd gradeX text-center ">
+                            <td class="text-center font-table">
+                                <a href="{% url 'app:detail' %}?sn={{ store_name }}&date={{date}}&name={{name}}">
+                                    {{ name|truncatechars:13}}
+                                </a>
+                            </td>
+                            <td class="text-center font-table">
+                                {{cnt}}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>　
+                </table>
+            </div>
+            <div class="col-2 p-0">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-center">総差枚</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for payout in py %}
+                        <tr class="odd gradeX text-center">
+                            <td class="text-center font-table">
+                                {{payout}}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>　
+                </table>
+            </div>
+            <div class="col-2 p-0">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-center">平均G</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for avarage in avg %}
+                        <tr class="odd gradeX text-center">
+                            <td class="text-center font-table">
+                                {{avarage}}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>　
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

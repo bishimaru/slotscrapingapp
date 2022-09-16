@@ -1,0 +1,133 @@
+<!-- 親テンプレートを読み込む-->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- パンくずリストの設定-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+            </li>
+            <li class="breadcrumb-item active">
+                <a href="{% url 'app:slot_name_list' %}">
+                    TOP
+                </a>
+            </li>
+        </ol>
+        <!--ページタイトル-->
+        <div class="card mb-3">
+            <div class="card-header">
+                <h3><b>パチスロデータアプリ</b></h3>
+
+            </div>
+            <div class="card-body">
+                <!-- テーブル表の定義 -->
+                <div class="table-responsive">
+                    <table width="100%" class="table table-striped table-bordered table-hover">
+                        　
+                        <!-- 表の列の定義-->
+
+                        <thead>
+
+                            <tr>
+
+
+                                <th class="text-center">総差枚数</th>
+                                <th class="text-center">平均回転数</th>
+                                <th class="text-center">平均差枚数</th>
+                                <!-- <th class="text-center">メモ</th> -->
+                            </tr>
+                        </thead>
+                        　
+                        <!-- ここまでが表の列の定義-->
+                        　
+                        <!-- 表のデータ部分の表示-->
+                        <tbody>
+
+                            <tr class="odd gradeX text-center">
+                                <!-- <td class="text-center" width="100">{{ item.store_name }}</td>
+                                <td class="text-center" width="100">{{ item.date }}</td> -->
+
+
+                                <td class="text-center" width="140">{{ tp }}</td>
+                                <td class="text-center" width="100">{{ ac }}</td>
+                                <td class="text-center" width="140">{{ ap }}</td>
+                                <!-- <td class="text-center" width="140">{{ item.memo }}</td> -->
+                            </tr>
+
+
+                        </tbody>
+                        　
+                        <!-- ここまでが表のデータ部分の表示-->
+                    </table>
+                    <br>
+                    <hr>
+                    <h3 class='text-center'><b>{% for item in object_list|slice:"0:1"%}
+
+                            {{ item.name }}</b></h3>
+                    {% endfor %}
+                    <hr>
+                    <br>
+                    <!-- ここまでがテーブル表の定義 -->
+                    <table width="100%" class="table table-striped table-bordered table-hover">
+                        　
+                        <!-- 表の列の定義-->
+
+                        <thead>
+
+                            <tr>
+
+                                <!-- <th class="text-center">店舗名</th>
+                                <th class="text-center">日付</th> -->
+
+                                <th class="text-center">台番号</th>
+
+                                <!-- <th class="text-center">機種名</th> -->
+                                <th class="text-center">BB</th>
+                                <th class="text-center">RB</th>
+                                <th class="text-center">総回転数</th>
+                                <th class="text-center">差枚数</th>
+                                <th class="text-center">メモ</th>
+                            </tr>
+                        </thead>
+                        　
+                        <!-- ここまでが表の列の定義-->
+                        　
+                        <!-- 表のデータ部分の表示-->
+                        <tbody>
+                            {% for item in object_list %}
+                            <tr class="odd gradeX text-center">
+                                <!-- <td class="text-center" width="100">{{ item.store_name }}</td>
+                                <td class="text-center" width="100">{{ item.date }}</td> -->
+
+                                <td class="text-center" width="100">
+                                    {{ item.number}}
+                                </td>
+
+
+                                <!-- <td class="text-center" width="100">{{ item.name }}</td> -->
+                                <td class="text-truncate text-center" width="140">{{ item.bigbonus }}
+
+                                </td>
+                                <td class="text-center" width="140">{{ item.regularbonus }}</td>
+                                <td class="text-center" width="100">{{ item.count }}</td>
+                                <td class="text-center" width="140">{{ item.payout }}</td>
+                                {% if item.memo == None %}
+                                <td class="text-center" width="140"></td>
+                                {% else %}
+                                <td class="text-center" width="140">{{ item.memo }}</td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                        　
+                        <!-- ここまでが表のデータ部分の表示-->
+                    </table>
+                    <!-- ここまでがテーブル表の定義 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
