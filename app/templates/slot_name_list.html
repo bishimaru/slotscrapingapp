@@ -83,6 +83,58 @@
                     </tbody>　
                 </table>
             </div>
+            {% if pachinko %}
+            <br>
+            <div class="pachinko col-12">
+                <h1 class="text-center">P海物語E (大海物語4SP)</h1>
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr class="odd gradeX text-center">
+                          
+                            <td class="text-center font-table">
+                                台番
+                            </td>
+                            <td class="text-center font-table">
+                                １k目安
+                            </td>
+                            <td class="text-center font-table">
+                                総回転
+                            </td>
+
+                            <td class="text-center font-table">
+                                当たり
+                            </td>
+                            <td class="text-center font-table">
+                                差枚数
+                             </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in pachinko %}
+                        <tr class="odd gradeX text-center">
+                          
+                            <td class="text-center font-table">
+                                {{p.number}}
+                            </td>
+                            <td class="text-center font-table">
+                                {{p.game_1k}}
+                            </td>
+                            <td class="text-center font-table">
+                                {{p.count}}
+                            </td>
+                            <td class="text-center font-table">
+                                {{p.bonus}}
+                            </td>
+                            <td class="text-center font-table">
+                                {{p.payout}}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>　
+
+                </table>
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>

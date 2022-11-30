@@ -6,5 +6,5 @@ class AppConfig(AppConfig):
     name = 'app'
 
     def ready(self):
-        from .management.commands.scraping import start
+        from .management.commands.scraping_scheduler import start
         start()

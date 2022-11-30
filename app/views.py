@@ -34,6 +34,7 @@ class DateView(ListView):
 
 class SlotNameView(ListView):
     model = Slot
+    
     template_name = 'slot_name_list.html'
     context_object_name = 'name_cnt'
 
@@ -63,13 +64,16 @@ class SlotNameView(ListView):
                 date=date, name=n[0]).aggregate(Sum('payout'))
             py = int(py['payout__sum'])
             name_pay.append(py)
+        
+        pachinko = Pachinko.objects.filter(date=date)
 
         context.update({
             'name_cnt': n_c,
             'store_name': store_name,
             'date': date,
             'avg': avarage,
-            'py': name_pay
+            'py': name_pay,
+            'pachinko': pachinko
         })
         return context
 

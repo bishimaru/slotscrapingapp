@@ -129,5 +129,4 @@ MEDIA_ROOT = 'media/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 CHROME_DRIVER_PATH = "/Users/yamamotokenta/Desktop/projects/scraping-slot/slotscrapingapp/app/management/commands/chromedriver"
