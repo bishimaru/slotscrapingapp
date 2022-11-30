@@ -1,1 +1,2 @@
 # slotscrapingapp
+# scraping-slot
